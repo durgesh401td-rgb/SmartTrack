@@ -9,9 +9,8 @@ A modern, responsive, and user-friendly web application designed to help individ
 ---
 
 ## 🚀 Live Demo
-- **Website URL:** [https://your-live-link.netlify.app](https://your-live-link.netlify.app) *(Replace with your actual link)*
-- **Google Sheet Database (View Only):** [Google Sheet Link](https://docs.google.com/spreadsheets/d/your-sheet-id) *(Replace with your sheet link)*
-
+- **Website URL:** https://clever-expense-tracker-12345.netlify.app/ 
+- **Google Sheet Database (View Only):** https://docs.google.com/spreadsheets/d/1YU-EBJzhnK42w-MmzzgoCeMId5E-ZLtQBlx3r8NQh0A/edit?usp=sharing 
 ---
 
 ## 🌟 Key Features
