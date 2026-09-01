@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services & Calculators | SmartTrack</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-wallet"></i>
+      <span>Smart<strong>Track</strong></span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html" class="btn-nav">Contact & Log</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-banner">
+    <div class="container">
+      <h1>Financial Tools & Services</h1>
+      <p>Explore built-in financial calculators and asset management modules.</p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section container">
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fa-solid fa-tags"></i>
+        <h3>Expense Budgeting</h3>
+        <p>Set custom monthly caps on food, rent, entertainment, and utilities with overspending alerts.</p>
+      </div>
+      <div class="service-card">
+        <i class="fa-solid fa-piggy-bank"></i>
+        <h3>Savings Goals</h3>
+        <p>Define targets for emergency funds, vacations, or down payments with progress trackers.</p>
+      </div>
+      <div class="service-card">
+        <i class="fa-solid fa-arrow-trend-up"></i>
+        <h3>SIP & ROI Forecasting</h3>
+        <p>Simulate compounding interest returns on Monthly SIPs and lump-sum investments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Investment Calculator -->
+  <section class="section container" style="padding-top: 0;">
+    <div class="calculator-box">
+      <div class="section-title">
+        <h2>💡 Compound Investment Growth Calculator</h2>
+        <p>Calculate your estimated wealth over time.</p>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <div class="form-group">
+            <label>Monthly Investment ($):</label>
+            <input type="number" id="calc-monthly" value="500" min="10">
+          </div>
+          <div class="form-group">
+            <label>Expected Annual Return Rate (%):</label>
+            <input type="number" id="calc-rate" value="12" min="1" max="100">
+          </div>
+          <div class="form-group">
+            <label>Time Period (Years):</label>
+            <input type="number" id="calc-years" value="10" min="1" max="50">
+          </div>
+          <button class="btn btn-primary" onclick="calculateGrowth()">Calculate Returns</button>
+        </div>
+
+        <div class="calc-results">
+          <div class="res-item">
+            <span>Total Invested:</span>
+            <strong id="res-invested">$60,000</strong>
+          </div>
+          <div class="res-item">
+            <span>Estimated Returns:</span>
+            <strong id="res-gain" style="color: #10b981;">$56,017</strong>
+          </div>
+          <div class="res-item total">
+            <span>Future Total Value:</span>
+            <strong id="res-total">$116,017</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-content">
+      <p>© 2026 SmartTrack - Personal Expense & Investment Portal. All Rights Reserved.</p>
+      <div class="social-links">
+        <a href="#"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

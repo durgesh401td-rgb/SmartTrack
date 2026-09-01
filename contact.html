@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Log Entry | SmartTrack</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-wallet"></i>
+      <span>Smart<strong>Track</strong></span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html" class="active btn-nav">Contact & Log</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-banner">
+    <div class="container">
+      <h1>Log Entry & Contact Support</h1>
+      <p>Submit transactions, inquiries, or feedback. All submissions sync with Google Sheets.</p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="form-wrapper">
+      <div class="form-info">
+        <h2>Get in Touch & Record Data</h2>
+        <p>Use the form on the right to log an expense, add an investment, or send feedback to our team.</p>
+        
+        <div class="info-box">
+          <p><i class="fa-solid fa-envelope"></i> support@smarttrack.io</p>
+          <p><i class="fa-solid fa-location-dot"></i> Global Financial Hub, New York, NY</p>
+          <p><i class="fa-solid fa-shield-halved"></i> 256-Bit SSL Encrypted Transmission</p>
+        </div>
+
+        <div class="sheet-status-card">
+          <h4><i class="fa-solid fa-database"></i> Database Connection</h4>
+          <p>Connected to Google Sheets Web App. Your records will be saved as new rows in real time.</p>
+        </div>
+      </div>
+
+      <!-- The Main Submission Form -->
+      <div class="form-card">
+        <form id="trackerForm">
+          <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. John Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="e.g. john@example.com" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="entryType">Entry Type *</label>
+              <select id="entryType" name="entryType" required>
+                <option value="Expense">Expense Entry</option>
+                <option value="Investment">Investment Entry</option>
+                <option value="Feedback">Feedback / Inquiry</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Category *</label>
+              <select id="category" name="category" required>
+                <option value="Food & Dining">Food & Dining</option>
+                <option value="Rent & Housing">Rent & Housing</option>
+                <option value="Stocks / ETF">Stocks / ETF</option>
+                <option value="Mutual Funds">Mutual Funds</option>
+                <option value="Crypto">Cryptocurrency</option>
+                <option value="General Inquiry">General Inquiry</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Amount ($) (Optional for inquiries)</label>
+            <input type="number" id="amount" name="amount" placeholder="e.g. 150.00" step="0.01">
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Notes / Message *</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Add transaction description or your message here..." required></textarea>
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn btn-primary btn-block">
+            <i class="fa-solid fa-paper-plane"></i> Submit to Google Sheet
+          </button>
+        </form>
+
+        <!-- Dynamic Success / Error Alert -->
+        <div id="formResponse" class="response-message"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-content">
+      <p>© 2026 SmartTrack - Personal Expense & Investment Portal. All Rights Reserved.</p>
+      <div class="social-links">
+        <a href="#"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
