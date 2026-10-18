@@ -590,41 +590,246 @@ function calculateGrowth() {
 }
 
 // ------------------------------------------------------------------------------
-// 8. FORM SUBMISSION & LIFECYCLE HOOKS
+// 8. ADMIN AUTHENTICATION & ACCESS CONTROL (Protects Backend Audit & Drawer)
+// ------------------------------------------------------------------------------
+const AdminAuth = {
+  getPasscode() {
+    return localStorage.getItem("smarttrack_admin_passcode") || "admin2026";
+  },
+
+  isAuthenticated() {
+    return sessionStorage.getItem("smarttrack_admin_session") === "authenticated";
+  },
+
+  init() {
+    this.injectModal();
+
+    if (this.isAuthenticated()) {
+      document.body.classList.add("admin-authenticated");
+      this.updateDrawerHeader(true);
+    }
+
+    // Bind footer / nav admin triggers
+    document.querySelectorAll(".admin-portal-trigger").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (this.isAuthenticated()) {
+          this.openDrawer();
+        } else {
+          this.openModal();
+        }
+      });
+    });
+
+    // Global keyboard shortcut: Ctrl + Shift + A (or Cmd + Shift + A)
+    window.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "A" || e.key === "a")) {
+        e.preventDefault();
+        if (this.isAuthenticated()) {
+          this.toggleDrawer();
+        } else {
+          this.openModal();
+        }
+      }
+    });
+
+    // URL parameter trigger: ?admin or #admin
+    if (window.location.search.includes("admin") || window.location.hash.includes("admin")) {
+      setTimeout(() => {
+        if (!this.isAuthenticated()) this.openModal();
+      }, 400);
+    }
+  },
+
+  injectModal() {
+    if (document.getElementById("adminAuthModal")) return;
+
+    const modalHTML = `
+      <div id="adminAuthModal" class="admin-auth-overlay">
+        <div class="admin-auth-card">
+          <button class="admin-close-modal" id="closeAdminModalBtn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+          <div class="admin-auth-header">
+            <div class="admin-auth-icon">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <h3>Admin Portal Access</h3>
+            <p>Protected area. Enter the administrative passcode to inspect real-time system logs and backend activity.</p>
+          </div>
+          <form id="adminAuthForm" class="admin-auth-form">
+            <div class="form-group">
+              <label for="adminPasscodeInput">Administrative Passcode:</label>
+              <div class="admin-passcode-wrap">
+                <input type="password" id="adminPasscodeInput" class="admin-passcode-input" placeholder="Enter Admin Passcode" required autocomplete="current-password">
+              </div>
+            </div>
+            <div id="adminAuthError" class="admin-auth-error">
+              <i class="fa-solid fa-circle-exclamation"></i> Incorrect passcode. Access restricted.
+            </div>
+            <div class="admin-auth-actions">
+              <button type="button" class="btn-admin-cancel" id="cancelAdminModalBtn">Cancel</button>
+              <button type="submit" class="btn-admin-verify">Unlock Admin Panel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML("beforeend", modalHTML);
+
+    const form = document.getElementById("adminAuthForm");
+    const closeBtn = document.getElementById("closeAdminModalBtn");
+    const cancelBtn = document.getElementById("cancelAdminModalBtn");
+
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = document.getElementById("adminPasscodeInput");
+        if (input) this.verify(input.value.trim());
+      });
+    }
+    if (closeBtn) closeBtn.addEventListener("click", () => this.closeModal());
+    if (cancelBtn) cancelBtn.addEventListener("click", () => this.closeModal());
+  },
+
+  openModal() {
+    const modal = document.getElementById("adminAuthModal");
+    const err = document.getElementById("adminAuthError");
+    const input = document.getElementById("adminPasscodeInput");
+    if (err) err.style.display = "none";
+    if (input) input.value = "";
+    if (modal) {
+      modal.classList.add("active");
+      setTimeout(() => input && input.focus(), 100);
+    }
+  },
+
+  closeModal() {
+    const modal = document.getElementById("adminAuthModal");
+    if (modal) modal.classList.remove("active");
+  },
+
+  verify(enteredPasscode) {
+    const err = document.getElementById("adminAuthError");
+    if (enteredPasscode === this.getPasscode()) {
+      sessionStorage.setItem("smarttrack_admin_session", "authenticated");
+      document.body.classList.add("admin-authenticated");
+      this.closeModal();
+      this.updateDrawerHeader(true);
+      this.openDrawer();
+      recordAction("Admin Successfully Authenticated", { timestamp: new Date().toISOString() });
+    } else {
+      if (err) {
+        err.style.display = "block";
+        err.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Invalid Passcode. Access Restricted.';
+      }
+      recordAction("Admin Authentication Failed", { attemptTime: new Date().toISOString() });
+    }
+  },
+
+  logout() {
+    sessionStorage.removeItem("smarttrack_admin_session");
+    document.body.classList.remove("admin-authenticated");
+    this.closeDrawer();
+    this.updateDrawerHeader(false);
+    recordAction("Admin Logged Out");
+    alert("🔒 Admin mode locked. Backend audit panel is now hidden.");
+  },
+
+  updateDrawerHeader(isAdmin) {
+    const header = document.querySelector("#actionLogDrawer .drawer-header");
+    if (!header) return;
+
+    let adminBadge = header.querySelector(".admin-badge-drawer");
+    let logoutBtn = header.querySelector(".btn-admin-logout");
+
+    if (isAdmin) {
+      if (!adminBadge) {
+        const title = header.querySelector("h3");
+        if (title) {
+          title.insertAdjacentHTML("beforeend", `<span class="admin-badge-drawer"><i class="fa-solid fa-lock-open"></i> ADMIN</span>`);
+        }
+      }
+      if (!logoutBtn) {
+        const closeBtn = header.querySelector(".close-drawer-btn");
+        if (closeBtn) {
+          closeBtn.insertAdjacentHTML("beforebegin", `<button id="adminLogoutBtn" class="btn-admin-logout" title="Exit Admin Mode"><i class="fa-solid fa-lock"></i> Lock</button>`);
+          const btn = document.getElementById("adminLogoutBtn");
+          if (btn) btn.addEventListener("click", () => this.logout());
+        }
+      }
+    } else {
+      if (adminBadge) adminBadge.remove();
+      if (logoutBtn) logoutBtn.remove();
+    }
+  },
+
+  openDrawer() {
+    const drawer = document.getElementById("actionLogDrawer");
+    if (drawer) {
+      drawer.classList.add("open");
+      recordAction("Action Log Drawer Opened (Admin)");
+    }
+  },
+
+  closeDrawer() {
+    const drawer = document.getElementById("actionLogDrawer");
+    if (drawer) drawer.classList.remove("open");
+  },
+
+  toggleDrawer() {
+    const drawer = document.getElementById("actionLogDrawer");
+    if (drawer) {
+      if (drawer.classList.contains("open")) {
+        this.closeDrawer();
+      } else {
+        this.openDrawer();
+      }
+    }
+  }
+};
+
+// ------------------------------------------------------------------------------
+// 9. FORM SUBMISSION & LIFECYCLE HOOKS
 // ------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Initialize Currency Engine
+  // 1. Initialize Admin Authentication System
+  AdminAuth.init();
+
+  // 2. Initialize Currency Engine
   CurrencyEngine.init();
 
-  // 2. Initialize Persona Advisor if present
+  // 3. Initialize Persona Advisor if present
   if (document.getElementById("personaAdvisorOutput")) {
     ClientAdvisor.selectPersona("salaried");
   }
 
-  // 3. Initialize Action Logger UI
+  // 4. Initialize Action Logger UI
   ActionLogger.updateLogUI();
 
-  // 4. Record Page View Action
+  // 5. Record Page View Action
   recordAction("Page Viewed", {
     title: document.title,
     path: window.location.pathname,
     screen: `${window.innerWidth}x${window.innerHeight}`
   });
 
-  // 5. Drawer Toggle Logic
+  // 6. Drawer Toggle Logic (Restricted to Admin)
   const toggleBtn = document.getElementById("openLogDrawerBtn");
   const closeBtn = document.getElementById("closeLogDrawerBtn");
   const drawer = document.getElementById("actionLogDrawer");
 
   if (toggleBtn && drawer) {
     toggleBtn.addEventListener("click", () => {
-      drawer.classList.add("open");
-      recordAction("Action Log Drawer Opened");
+      if (AdminAuth.isAuthenticated()) {
+        AdminAuth.openDrawer();
+      } else {
+        AdminAuth.openModal();
+      }
     });
   }
   if (closeBtn && drawer) {
     closeBtn.addEventListener("click", () => {
-      drawer.classList.remove("open");
+      AdminAuth.closeDrawer();
     });
   }
 

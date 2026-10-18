@@ -81,6 +81,20 @@ expense-tracker/
 
 ---
 
+## 🔐 Admin Portal & Protected Backend Access
+
+The real-time backend audit drawer and action inspection tools are **hidden by default from ordinary visitors** and restricted strictly to **Admin** users.
+
+### How to Access the Admin Portal:
+1. **Footer Shortcut**: Click the **`🛡️ Admin Access`** button in the footer of any page.
+2. **Keyboard Shortcut**: Press **`Ctrl + Shift + A`** (or **`Cmd + Shift + A`** on Mac) from anywhere on the application.
+3. **URL Parameter**: Open any page with the query `?admin=true` (e.g. `http://localhost:8000/index.html?admin=true`).
+4. **Default Admin Passcode**: `admin2026`
+
+Once authenticated, the floating **Backend Actions** pill and slide-in **Real-Time Audit Log** drawer are unlocked. You can lock and log out at any time by clicking **`Lock`** inside the drawer header.
+
+---
+
 ## 💻 Running Locally
 
 Simply open `index.html` in any modern web browser or run a lightweight local server:
@@ -100,3 +114,4 @@ Navigate to `http://localhost:8000` in your browser.
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
