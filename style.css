@@ -969,33 +969,8 @@ input:focus, select:focus, textarea:focus {
   border: 1px solid #fecaca;
 }
 
-/* --- Footer --- */
-footer {
-  background: var(--secondary);
-  color: #94a3b8;
-  padding: 30px 0;
-  margin-top: 60px;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.social-links {
-  display: flex;
-  gap: 15px;
-}
-
-.social-links a {
-  color: #94a3b8;
-  font-size: 1.2rem;
-  transition: color 0.2s ease;
-}
-
-.social-links a:hover {
-  color: #ffffff;
+body {
+  padding-bottom: 60px;
 }
 
 /* --- Responsive --- */
@@ -1022,25 +997,6 @@ footer {
 }
 
 /* --- Admin Authentication & Protected Portal Styles --- */
-.admin-portal-trigger {
-  color: #64748b;
-  text-decoration: none;
-  font-size: 0.8rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid #334155;
-  transition: all 0.2s ease;
-  margin-left: 15px;
-}
-
-.admin-portal-trigger:hover {
-  color: #10b981 !important;
-  border-color: #10b981;
-  background: rgba(16, 185, 129, 0.08);
-}
 
 .admin-auth-overlay {
   position: fixed;
