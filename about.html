@@ -3,22 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | SmartTrack</title>
+  <title>About Us | SmartTrack (₹)</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <header class="navbar">
-    <div class="logo">
-      <i class="fa-solid fa-wallet"></i>
-      <span>Smart<strong>Track</strong></span>
+  <!-- Top Live Currency Ticker -->
+  <div class="top-currency-bar">
+    <div class="top-bar-inner">
+      <div>
+        <span class="live-dot"></span>
+        <span>Live Forex Index (Base INR ₹):</span>
+        <span class="ticker-item">1 USD = ₹86.50</span>
+        <span class="ticker-item">1 EUR = ₹92.30</span>
+        <span class="ticker-item">1 GBP = ₹110.60</span>
+        <span class="ticker-item">1 AED = ₹23.55</span>
+      </div>
+      <div>
+        <a href="services.html#currency-engine" style="color: #93c5fd; text-decoration: none; font-size: 0.78rem;">
+          <i class="fa-solid fa-sliders"></i> Adjust Custom Rates
+        </a>
+      </div>
     </div>
+  </div>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-wallet"></i>
+      <span>Smart<strong>Track</strong> <small style="font-size: 0.75rem; color: var(--primary);">₹ INR</small></span>
+    </a>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html" class="active">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="services.html">Services & Calculators</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html" class="btn-nav">Contact & Log</a></li>
       </ul>
@@ -28,7 +47,7 @@
   <section class="page-banner">
     <div class="container">
       <h1>About SmartTrack</h1>
-      <p>Empowering individuals to make informed financial decisions through simplicity and data.</p>
+      <p>Empowering financial independence through Rupee-based budgeting, smart loan management, and transparent cloud tracking.</p>
     </div>
   </section>
 
@@ -36,23 +55,30 @@
     <div class="about-grid">
       <div class="about-text">
         <span class="badge">Our Mission</span>
-        <h2>Bridging the Gap Between Daily Budgeting & Long-Term Wealth</h2>
-        <p>Most budgeting apps focus only on cutting expenses, while investment platforms ignore daily spending habits. SmartTrack was created to combine both worlds into one streamlined web application.</p>
-        <p>Whether you're allocating funds for monthly rent or building a diversified index fund portfolio, we give you the tools to track every cent without requiring complex enterprise databases.</p>
+        <h2>Bridging Daily Budgeting, EMI Management & Long-Term Compounding</h2>
+        <p>Most budgeting apps focus only on recording expenses, while investment platforms ignore loan EMIs and day-to-day spending pressures. SmartTrack was architected to unite all three facets into one streamlined Rupee-denominated platform.</p>
+        <p>Whether you're allocating funds for monthly rent in Mumbai or Bengaluru, paying off an active home loan EMI, or building a diversified equity mutual fund portfolio, we help you track every single Rupee without requiring expensive software licenses.</p>
         
         <div class="highlights">
           <div class="highlight-item">
             <i class="fa-solid fa-check-circle"></i>
             <div>
-              <strong>100% Free & Open</strong>
-              <p>Uses your own Google Drive & Sheets as the database.</p>
+              <strong>100% Free & Open Architecture</strong>
+              <p>Leverages your own Google Drive & Google Sheets as the cloud database.</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <i class="fa-solid fa-check-circle"></i>
+            <div>
+              <strong>Real-Time Action Tracking</strong>
+              <p>Every calculation, conversion, and entry is captured to maintain a full audit trail.</p>
             </div>
           </div>
           <div class="highlight-item">
             <i class="fa-solid fa-check-circle"></i>
             <div>
               <strong>Privacy First</strong>
-              <p>Your financial numbers stay strictly within your private accounts.</p>
+              <p>Your financial numbers stay strictly within your private Google accounts.</p>
             </div>
           </div>
         </div>
@@ -65,21 +91,21 @@
             <span class="num">01</span>
             <div>
               <h4>Consistency</h4>
-              <p>Log transactions in under 5 seconds every single day.</p>
+              <p>Log transactions in under 5 seconds every single day with instant cloud sync.</p>
             </div>
           </div>
           <div class="principle">
             <span class="num">02</span>
             <div>
-              <h4>Compounding</h4>
-              <p>Reinvest your monthly savings into proven asset classes.</p>
+              <h4>Debt Discipline</h4>
+              <p>Keep your EMI-to-Income ratio safely under 40% using our custom EMI planner.</p>
             </div>
           </div>
           <div class="principle">
             <span class="num">03</span>
             <div>
-              <h4>Clarity</h4>
-              <p>No jargon. Clear visual charts and clean spreadsheet tables.</p>
+              <h4>Compounding</h4>
+              <p>Channel every Rupee saved from unnecessary lifestyle wants into long-term SIPs.</p>
             </div>
           </div>
         </div>
@@ -87,12 +113,33 @@
     </div>
   </section>
 
+  <!-- Floating Action Logger Pill -->
+  <div id="openLogDrawerBtn" class="floating-log-pill" title="Click to inspect real-time backend audit logs">
+    <i class="fa-solid fa-database" style="color: #10b981;"></i>
+    <span>Backend Actions</span>
+    <span id="logCountBadge" class="log-count-badge">0</span>
+  </div>
+
+  <!-- Slide-in Action Logger Drawer -->
+  <div id="actionLogDrawer" class="action-log-drawer">
+    <div class="drawer-header">
+      <h3><i class="fa-solid fa-receipt"></i> Real-Time Audit Log</h3>
+      <button id="closeLogDrawerBtn" class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-meta-bar">
+      <span>Auto-syncing every action to Google Apps Script</span>
+      <button id="clearLogsBtn" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.72rem;">Clear Local</button>
+    </div>
+    <div id="actionLogDrawerList" class="drawer-list"></div>
+  </div>
+
   <footer>
     <div class="container footer-content">
-      <p>© 2026 SmartTrack - Personal Expense & Investment Portal. All Rights Reserved.</p>
+      <p>© 2026 SmartTrack - Personal Expense & Investment Portal (Rupees ₹ Edition). All Rights Reserved.</p>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-github"></i></a>
         <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
       </div>
     </div>
   </footer>

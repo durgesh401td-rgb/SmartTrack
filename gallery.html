@@ -3,22 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery & Analytics Showcase | SmartTrack</title>
+  <title>Gallery & Analytics Showcase | SmartTrack (₹)</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <header class="navbar">
-    <div class="logo">
-      <i class="fa-solid fa-wallet"></i>
-      <span>Smart<strong>Track</strong></span>
+  <!-- Top Live Currency Ticker -->
+  <div class="top-currency-bar">
+    <div class="top-bar-inner">
+      <div>
+        <span class="live-dot"></span>
+        <span>Live Forex Index (Base INR ₹):</span>
+        <span class="ticker-item">1 USD = ₹86.50</span>
+        <span class="ticker-item">1 EUR = ₹92.30</span>
+        <span class="ticker-item">1 GBP = ₹110.60</span>
+        <span class="ticker-item">1 AED = ₹23.55</span>
+      </div>
+      <div>
+        <a href="services.html#currency-engine" style="color: #93c5fd; text-decoration: none; font-size: 0.78rem;">
+          <i class="fa-solid fa-sliders"></i> Adjust Custom Rates
+        </a>
+      </div>
     </div>
+  </div>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-wallet"></i>
+      <span>Smart<strong>Track</strong> <small style="font-size: 0.75rem; color: var(--primary);">₹ INR</small></span>
+    </a>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="services.html">Services & Calculators</a></li>
         <li><a href="gallery.html" class="active">Gallery</a></li>
         <li><a href="contact.html" class="btn-nav">Contact & Log</a></li>
       </ul>
@@ -27,8 +46,8 @@
 
   <section class="page-banner">
     <div class="container">
-      <h1>Visual Analytics & Dashboard Showcase</h1>
-      <p>Preview reports, category breakdowns, and wealth charts generated from your data.</p>
+      <h1>Visual Analytics & Module Showcase</h1>
+      <p>Preview reports, category breakdowns, EMI calculators, and Rupee wealth matrices generated from your data.</p>
     </div>
   </section>
 
@@ -40,8 +59,8 @@
           <i class="fa-solid fa-chart-pie"></i>
         </div>
         <div class="gallery-info">
-          <h3>Expense Distribution</h3>
-          <p>Visual breakdown of monthly outflow categorized across essentials, dining, and luxuries.</p>
+          <h3>Expense Distribution in ₹</h3>
+          <p>Visual breakdown of monthly outflow categorized across essentials, dining, groceries, and utilities.</p>
         </div>
       </div>
 
@@ -52,7 +71,7 @@
         </div>
         <div class="gallery-info">
           <h3>Asset Allocation Matrix</h3>
-          <p>Portfolio diversification spread across Equities (55%), Mutual Funds (25%), and Gold/Bonds (20%).</p>
+          <p>Portfolio diversification spread across Equity Mutual Funds (55%), Direct Stocks (25%), and Gold/PPF (20%).</p>
         </div>
       </div>
 
@@ -63,7 +82,7 @@
         </div>
         <div class="gallery-info">
           <h3>Google Sheets Auto-Sync</h3>
-          <p>Direct live tabular view showing timestamped entries populated seamlessly via Web App API.</p>
+          <p>Direct live tabular view showing timestamped Rupee entries populated seamlessly via Web App API.</p>
         </div>
       </div>
 
@@ -73,19 +92,62 @@
           <i class="fa-solid fa-arrow-trend-up"></i>
         </div>
         <div class="gallery-info">
-          <h3>10-Year Compounding Curve</h3>
-          <p>Exponential growth projection based on regular monthly contributions and dividend reinvestment.</p>
+          <h3>10-Year SIP Compounding Curve</h3>
+          <p>Exponential growth projection based on regular monthly contributions in ₹ and dividend reinvestment.</p>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="gallery-card">
+        <div class="gallery-image bg-gradient-5">
+          <i class="fa-solid fa-calculator"></i>
+        </div>
+        <div class="gallery-info">
+          <h3>EMI & Loan Amortization</h3>
+          <p>Full principal vs interest repayment breakdown with real-time interest savings from extra prepayments.</p>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="gallery-card">
+        <div class="gallery-image bg-gradient-6">
+          <i class="fa-solid fa-money-bill-transfer"></i>
+        </div>
+        <div class="gallery-info">
+          <h3>Live Currency & Action Audit</h3>
+          <p>Dynamic forex conversion to INR with custom rate adjustment and 100% backend action logging.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Floating Action Logger Pill -->
+  <div id="openLogDrawerBtn" class="floating-log-pill" title="Click to inspect real-time backend audit logs">
+    <i class="fa-solid fa-database" style="color: #10b981;"></i>
+    <span>Backend Actions</span>
+    <span id="logCountBadge" class="log-count-badge">0</span>
+  </div>
+
+  <!-- Slide-in Action Logger Drawer -->
+  <div id="actionLogDrawer" class="action-log-drawer">
+    <div class="drawer-header">
+      <h3><i class="fa-solid fa-receipt"></i> Real-Time Audit Log</h3>
+      <button id="closeLogDrawerBtn" class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-meta-bar">
+      <span>Auto-syncing every action to Google Apps Script</span>
+      <button id="clearLogsBtn" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.72rem;">Clear Local</button>
+    </div>
+    <div id="actionLogDrawerList" class="drawer-list"></div>
+  </div>
+
   <footer>
     <div class="container footer-content">
-      <p>© 2026 SmartTrack - Personal Expense & Investment Portal. All Rights Reserved.</p>
+      <p>© 2026 SmartTrack - Personal Expense & Investment Portal (Rupees ₹ Edition). All Rights Reserved.</p>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-github"></i></a>
         <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
       </div>
     </div>
   </footer>

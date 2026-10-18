@@ -3,22 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact & Log Entry | SmartTrack</title>
+  <title>Contact & Log Entry | SmartTrack (₹)</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <header class="navbar">
-    <div class="logo">
-      <i class="fa-solid fa-wallet"></i>
-      <span>Smart<strong>Track</strong></span>
+  <!-- Top Live Currency Ticker -->
+  <div class="top-currency-bar">
+    <div class="top-bar-inner">
+      <div>
+        <span class="live-dot"></span>
+        <span>Live Forex Index (Base INR ₹):</span>
+        <span class="ticker-item">1 USD = ₹86.50</span>
+        <span class="ticker-item">1 EUR = ₹92.30</span>
+        <span class="ticker-item">1 GBP = ₹110.60</span>
+        <span class="ticker-item">1 AED = ₹23.55</span>
+      </div>
+      <div>
+        <a href="services.html#currency-engine" style="color: #93c5fd; text-decoration: none; font-size: 0.78rem;">
+          <i class="fa-solid fa-sliders"></i> Adjust Custom Rates
+        </a>
+      </div>
     </div>
+  </div>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-wallet"></i>
+      <span>Smart<strong>Track</strong> <small style="font-size: 0.75rem; color: var(--primary);">₹ INR</small></span>
+    </a>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="services.html">Services & Calculators</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html" class="active btn-nav">Contact & Log</a></li>
       </ul>
@@ -28,25 +47,26 @@
   <section class="page-banner">
     <div class="container">
       <h1>Log Entry & Contact Support</h1>
-      <p>Submit transactions, inquiries, or feedback. All submissions sync with Google Sheets.</p>
+      <p>Submit transactions in Indian Rupees (₹), inquiries, or feedback. All submissions and user actions sync in real time.</p>
     </div>
   </section>
 
   <section class="section container">
     <div class="form-wrapper">
       <div class="form-info">
-        <h2>Get in Touch & Record Data</h2>
-        <p>Use the form on the right to log an expense, add an investment, or send feedback to our team.</p>
+        <h2>Record Rupee Transactions</h2>
+        <p>Use the form on the right to log an expense, add an investment, record loan EMI payments, or send feedback to our team.</p>
         
         <div class="info-box">
           <p><i class="fa-solid fa-envelope"></i> support@smarttrack.io</p>
-          <p><i class="fa-solid fa-location-dot"></i> Global Financial Hub, New York, NY</p>
+          <p><i class="fa-solid fa-location-dot"></i> Financial District, BKC, Mumbai & Bengaluru</p>
           <p><i class="fa-solid fa-shield-halved"></i> 256-Bit SSL Encrypted Transmission</p>
+          <p><i class="fa-solid fa-bolt"></i> Real-time Action Tracking Enabled</p>
         </div>
 
         <div class="sheet-status-card">
-          <h4><i class="fa-solid fa-database"></i> Database Connection</h4>
-          <p>Connected to Google Sheets Web App. Your records will be saved as new rows in real time.</p>
+          <h4><i class="fa-solid fa-database"></i> Dual-Sheet Database Connection</h4>
+          <p>Connected to Google Sheets Web App. Your transactions are recorded in the <strong>Transactions</strong> sheet, while interactions are logged in the <strong>Action_Logs</strong> sheet.</p>
         </div>
       </div>
 
@@ -55,20 +75,21 @@
         <form id="trackerForm">
           <div class="form-group">
             <label for="fullName">Full Name *</label>
-            <input type="text" id="fullName" name="fullName" placeholder="e.g. John Doe" required>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Rajesh Kumar" required>
           </div>
 
           <div class="form-group">
             <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" placeholder="e.g. john@example.com" required>
+            <input type="email" id="email" name="email" placeholder="e.g. rajesh@example.com" required>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="entryType">Entry Type *</label>
               <select id="entryType" name="entryType" required>
-                <option value="Expense">Expense Entry</option>
-                <option value="Investment">Investment Entry</option>
+                <option value="Expense">Expense Entry (₹)</option>
+                <option value="Investment">Investment / SIP (₹)</option>
+                <option value="Loan EMI">Loan EMI Payment (₹)</option>
                 <option value="Feedback">Feedback / Inquiry</option>
               </select>
             </div>
@@ -76,28 +97,30 @@
             <div class="form-group">
               <label for="category">Category *</label>
               <select id="category" name="category" required>
-                <option value="Food & Dining">Food & Dining</option>
+                <option value="Food & Groceries">Food & Groceries</option>
                 <option value="Rent & Housing">Rent & Housing</option>
-                <option value="Stocks / ETF">Stocks / ETF</option>
-                <option value="Mutual Funds">Mutual Funds</option>
-                <option value="Crypto">Cryptocurrency</option>
+                <option value="Home / Auto Loan EMI">Home / Auto Loan EMI</option>
+                <option value="Mutual Funds / SIP">Mutual Funds / SIP</option>
+                <option value="Direct Equity / Stocks">Direct Equity / Stocks</option>
+                <option value="PPF / EPF / NPS">PPF / EPF / NPS</option>
+                <option value="Utilities & Bills">Utilities & Bills</option>
                 <option value="General Inquiry">General Inquiry</option>
               </select>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="amount">Amount ($) (Optional for inquiries)</label>
-            <input type="number" id="amount" name="amount" placeholder="e.g. 150.00" step="0.01">
+            <label for="amount">Amount in Indian Rupees (₹) (Optional for general inquiries)</label>
+            <input type="number" id="amount" name="amount" placeholder="e.g. 5000.00" step="1">
           </div>
 
           <div class="form-group">
             <label for="notes">Notes / Message *</label>
-            <textarea id="notes" name="notes" rows="4" placeholder="Add transaction description or your message here..." required></textarea>
+            <textarea id="notes" name="notes" rows="4" placeholder="Add transaction description, folio number, or your message here..." required></textarea>
           </div>
 
           <button type="submit" id="submitBtn" class="btn btn-primary btn-block">
-            <i class="fa-solid fa-paper-plane"></i> Submit to Google Sheet
+            <i class="fa-solid fa-paper-plane"></i> Submit to Google Sheet (₹)
           </button>
         </form>
 
@@ -107,12 +130,33 @@
     </div>
   </section>
 
+  <!-- Floating Action Logger Pill -->
+  <div id="openLogDrawerBtn" class="floating-log-pill" title="Click to inspect real-time backend audit logs">
+    <i class="fa-solid fa-database" style="color: #10b981;"></i>
+    <span>Backend Actions</span>
+    <span id="logCountBadge" class="log-count-badge">0</span>
+  </div>
+
+  <!-- Slide-in Action Logger Drawer -->
+  <div id="actionLogDrawer" class="action-log-drawer">
+    <div class="drawer-header">
+      <h3><i class="fa-solid fa-receipt"></i> Real-Time Audit Log</h3>
+      <button id="closeLogDrawerBtn" class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-meta-bar">
+      <span>Auto-syncing every action to Google Apps Script</span>
+      <button id="clearLogsBtn" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.72rem;">Clear Local</button>
+    </div>
+    <div id="actionLogDrawerList" class="drawer-list"></div>
+  </div>
+
   <footer>
     <div class="container footer-content">
-      <p>© 2026 SmartTrack - Personal Expense & Investment Portal. All Rights Reserved.</p>
+      <p>© 2026 SmartTrack - Personal Expense & Investment Portal (Rupees ₹ Edition). All Rights Reserved.</p>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-github"></i></a>
         <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
       </div>
     </div>
   </footer>

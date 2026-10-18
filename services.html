@@ -3,22 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services & Calculators | SmartTrack</title>
+  <title>Services & Financial Calculators | SmartTrack</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+  <!-- Top Live Currency Ticker -->
+  <div class="top-currency-bar">
+    <div class="top-bar-inner">
+      <div>
+        <span class="live-dot"></span>
+        <span>Live Forex Index (Base INR ₹):</span>
+        <span class="ticker-item">1 USD = ₹86.50</span>
+        <span class="ticker-item">1 EUR = ₹92.30</span>
+        <span class="ticker-item">1 GBP = ₹110.60</span>
+        <span class="ticker-item">1 AED = ₹23.55</span>
+      </div>
+      <div>
+        <a href="#currency-engine" style="color: #93c5fd; text-decoration: none; font-size: 0.78rem;">
+          <i class="fa-solid fa-sliders"></i> Adjust Custom Rates
+        </a>
+      </div>
+    </div>
+  </div>
+
   <header class="navbar">
-    <div class="logo">
+    <a href="index.html" class="logo">
       <i class="fa-solid fa-wallet"></i>
       <span>Smart<strong>Track</strong></span>
-    </div>
+    </a>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="services.html" class="active">Services & Calculators</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html" class="btn-nav">Contact & Log</a></li>
       </ul>
@@ -27,80 +46,332 @@
 
   <section class="page-banner">
     <div class="container">
-      <h1>Financial Tools & Services</h1>
-      <p>Explore built-in financial calculators and asset management modules.</p>
+      <h1>Financial Advisory & Custom Calculators</h1>
+      <p>Calculate EMIs, manage monthly spending, simulate compound growth, and get tailored client suggestions.</p>
     </div>
   </section>
 
-  <!-- Services Grid -->
-  <section class="section container">
+  <!-- Navigation anchors to tools -->
+  <section class="section container" style="padding-bottom: 10px;">
     <div class="services-grid">
-      <div class="service-card">
-        <i class="fa-solid fa-tags"></i>
-        <h3>Expense Budgeting</h3>
-        <p>Set custom monthly caps on food, rent, entertainment, and utilities with overspending alerts.</p>
+      <div class="service-card" onclick="document.getElementById('emi-calculator').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+        <i class="fa-solid fa-calculator"></i>
+        <h3>EMI & Loan Repayment</h3>
+        <p>Calculate monthly loan installments, total interest costs, and prepayment savings.</p>
       </div>
-      <div class="service-card">
-        <i class="fa-solid fa-piggy-bank"></i>
-        <h3>Savings Goals</h3>
-        <p>Define targets for emergency funds, vacations, or down payments with progress trackers.</p>
+      <div class="service-card" onclick="document.getElementById('spending-manager').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h3>Spending & Budget Health</h3>
+        <p>Analyze income vs spending, evaluate 50/30/20 splits, and inspect DTI risk scores.</p>
       </div>
-      <div class="service-card">
-        <i class="fa-solid fa-arrow-trend-up"></i>
-        <h3>SIP & ROI Forecasting</h3>
-        <p>Simulate compounding interest returns on Monthly SIPs and lump-sum investments.</p>
+      <div class="service-card" onclick="document.getElementById('client-advisor').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+        <i class="fa-solid fa-user-tie"></i>
+        <h3>Client Suggestion System</h3>
+        <p>Personalized financial action roadmaps tailored for students, salaried, or loan borrowers.</p>
+      </div>
+      <div class="service-card" onclick="document.getElementById('currency-engine').scrollIntoView({behavior:'smooth'});" style="cursor:pointer;">
+        <i class="fa-solid fa-money-bill-transfer"></i>
+        <h3>Live Currency Engine</h3>
+        <p>Convert world currencies to INR ₹ and adjust conversion rates dynamically as per need.</p>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Investment Calculator -->
-  <section class="section container" style="padding-top: 0;">
+  <!-- 1. EMI CALCULATOR -->
+  <section id="emi-calculator" class="section container">
     <div class="calculator-box">
-      <div class="section-title">
-        <h2>💡 Compound Investment Growth Calculator</h2>
-        <p>Calculate your estimated wealth over time.</p>
+      <div class="section-title" style="text-align: left; margin-bottom: 25px;">
+        <span class="badge">Loan Management Tool</span>
+        <h2>📊 Custom EMI & Loan Repayment Calculator</h2>
+        <p>Plan home loans, car loans, or personal debt and discover how to eliminate interest early.</p>
       </div>
+
       <div class="calc-grid">
         <div class="calc-inputs">
           <div class="form-group">
-            <label>Monthly Investment ($):</label>
-            <input type="number" id="calc-monthly" value="500" min="10">
+            <label for="emi-principal">Loan Amount / Principal (₹):</label>
+            <input type="number" id="emi-principal" value="2500000" step="5000" placeholder="e.g. 25,00,000">
           </div>
           <div class="form-group">
-            <label>Expected Annual Return Rate (%):</label>
-            <input type="number" id="calc-rate" value="12" min="1" max="100">
+            <label for="emi-rate">Annual Interest Rate (% p.a.):</label>
+            <input type="number" id="emi-rate" value="8.75" step="0.05" placeholder="e.g. 8.75">
           </div>
-          <div class="form-group">
-            <label>Time Period (Years):</label>
-            <input type="number" id="calc-years" value="10" min="1" max="50">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="emi-tenure">Tenure Duration:</label>
+              <input type="number" id="emi-tenure" value="15" min="1" placeholder="e.g. 15">
+            </div>
+            <div class="form-group">
+              <label for="emi-tenure-type">Tenure Unit:</label>
+              <select id="emi-tenure-type">
+                <option value="years" selected>Years</option>
+                <option value="months">Months</option>
+              </select>
+            </div>
           </div>
-          <button class="btn btn-primary" onclick="calculateGrowth()">Calculate Returns</button>
+          <button class="btn btn-primary btn-block" onclick="calculateEMI()">
+            <i class="fa-solid fa-calculator"></i> Calculate Monthly EMI
+          </button>
         </div>
 
         <div class="calc-results">
           <div class="res-item">
-            <span>Total Invested:</span>
-            <strong id="res-invested">$60,000</strong>
+            <span>Monthly Loan EMI:</span>
+            <strong id="emi-monthly-result" style="color: #059669; font-size: 1.3rem;">₹25,004</strong>
           </div>
           <div class="res-item">
-            <span>Estimated Returns:</span>
-            <strong id="res-gain" style="color: #10b981;">$56,017</strong>
+            <span>Principal Amount:</span>
+            <strong id="emi-principal-echo">₹25,00,000</strong>
+          </div>
+          <div class="res-item">
+            <span>Total Interest Payable:</span>
+            <strong id="emi-interest-result" style="color: #ef4444;">₹20,00,750</strong>
           </div>
           <div class="res-item total">
-            <span>Future Total Value:</span>
-            <strong id="res-total">$116,017</strong>
+            <span>Total Loan Repayment:</span>
+            <strong id="emi-total-result">₹45,00,750</strong>
+          </div>
+          <div class="res-item" style="margin-top: 10px; font-size: 0.88rem; color: #64748b;">
+            <span>Payment Proportion:</span>
+            <span id="emi-split-result">56% Principal / 44% Interest</span>
+          </div>
+
+          <div id="emi-management-tip"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SPENDING & BUDGET MANAGEMENT CALCULATOR -->
+  <section id="spending-manager" class="section container" style="padding-top: 0;">
+    <div class="calculator-box">
+      <div class="section-title" style="text-align: left; margin-bottom: 25px;">
+        <span class="badge">Budget Optimization</span>
+        <h2>⚖️ Spending & Expense Manager (50/30/20 & DTI Guidance)</h2>
+        <p>Evaluate your spending ratios, identify financial leaks, and receive tailored advice to manage cash flow.</p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <div class="form-group">
+            <label for="spend-income">Monthly In-Hand Income (₹) *</label>
+            <input type="number" id="spend-income" value="100000" placeholder="e.g. 1,00,000">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="spend-needs">Fixed Needs (Rent, Utilities, Food) (₹):</label>
+              <input type="number" id="spend-needs" value="40000" placeholder="e.g. 40,000">
+            </div>
+            <div class="form-group">
+              <label for="spend-wants">Wants & Leisure (Dining, Shopping) (₹):</label>
+              <input type="number" id="spend-wants" value="25000" placeholder="e.g. 25,000">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="spend-emis">Total Active Loan EMIs (₹):</label>
+              <input type="number" id="spend-emis" value="15000" placeholder="e.g. 15,000">
+            </div>
+            <div class="form-group">
+              <label for="spend-investments">Current Monthly SIPs/Savings (₹):</label>
+              <input type="number" id="spend-investments" value="20000" placeholder="e.g. 20,000">
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block" onclick="calculateSpendingBudget()">
+            <i class="fa-solid fa-chart-pie"></i> Analyze Spending Health & Get Advice
+          </button>
+        </div>
+
+        <div class="calc-results">
+          <div class="res-item">
+            <span>Total Monthly Outflow:</span>
+            <strong id="spend-total-outflow">₹80,000</strong>
+          </div>
+          <div class="res-item">
+            <span>Monthly Net Surplus / Savings:</span>
+            <strong id="spend-net-savings" style="color: #10b981;">₹20,000</strong>
+          </div>
+          <div class="res-item">
+            <span>Savings Rate:</span>
+            <strong id="spend-savings-rate">20% of income</strong>
+          </div>
+          <div class="res-item">
+            <span>Debt-To-Income (DTI) Ratio:</span>
+            <strong id="spend-dti-rate">15% (Safe Zone)</strong>
+          </div>
+
+          <div id="spend-score-box" style="margin-top: 15px;"></div>
+          <div id="spend-advice-container" style="margin-top: 15px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CLIENT PERSONA & ADVISORY SYSTEM -->
+  <section id="client-advisor" class="section container" style="padding-top: 0;">
+    <div class="calculator-box">
+      <div class="section-title" style="text-align: left; margin-bottom: 20px;">
+        <span class="badge">Intelligent Financial Advisor</span>
+        <h2>🎯 Client-Centric Recommendation System</h2>
+        <p>Select your client profile archetype to instantly generate structured asset allocation, emergency buffer, and tax roadmaps.</p>
+      </div>
+
+      <div class="persona-nav">
+        <button class="persona-btn active" data-persona="salaried" onclick="ClientAdvisor.selectPersona('salaried')">
+          <i class="fa-solid fa-briefcase"></i> Salaried Corporate Professional
+        </button>
+        <button class="persona-btn" data-persona="student" onclick="ClientAdvisor.selectPersona('student')">
+          <i class="fa-solid fa-graduation-cap"></i> Student / Early Career
+        </button>
+        <button class="persona-btn" data-persona="loan_heavy" onclick="ClientAdvisor.selectPersona('loan_heavy')">
+          <i class="fa-solid fa-house-chimney"></i> Family with Active Home Loan
+        </button>
+        <button class="persona-btn" data-persona="hni" onclick="ClientAdvisor.selectPersona('hni')">
+          <i class="fa-solid fa-crown"></i> High Net-Worth (HNI) Investor
+        </button>
+      </div>
+
+      <div id="personaAdvisorOutput">
+        <!-- Injected dynamically via script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. LIVE CURRENCY VALUE & CUSTOM ADJUSTER -->
+  <section id="currency-engine" class="section container" style="padding-top: 0;">
+    <div class="calculator-box">
+      <div class="section-title" style="text-align: left; margin-bottom: 20px;">
+        <span class="badge">Real-Time Forex & Custom Controller</span>
+        <h2>💱 Live Currency Engine & Custom Rate Switcher</h2>
+        <p>Live exchange values relative to Indian Rupee (₹). You can adjust conversion rates manually as per project needs or fetch real-time market rates.</p>
+      </div>
+
+      <div class="currency-manager-wrapper">
+        <div>
+          <h4 style="margin-bottom: 12px; color: var(--secondary);"><i class="fa-solid fa-pen-to-square"></i> Editable Exchange Rates (vs INR ₹):</h4>
+          <div id="currencyRatesGrid" class="currency-rates-grid">
+            <!-- Dynamically populated rate cards -->
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button id="updateCustomRateBtn" class="btn btn-primary btn-sm">
+              <i class="fa-solid fa-check"></i> Apply Custom Rates
+            </button>
+            <button id="fetchLiveRatesBtn" class="btn btn-secondary btn-sm">
+              <i class="fa-solid fa-arrows-rotate"></i> Sync Real-Time Market Forex
+            </button>
+          </div>
+        </div>
+
+        <div class="converter-box">
+          <h4 style="margin-bottom: 14px; color: var(--secondary);"><i class="fa-solid fa-calculator"></i> Quick Converter:</h4>
+          <div class="form-group">
+            <label>Amount to Convert:</label>
+            <input type="number" id="convertAmount" value="1000" step="10">
+          </div>
+          <div class="convert-row">
+            <div style="flex: 1;">
+              <label>From:</label>
+              <select id="convertFrom">
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="AED">AED (د.إ)</option>
+                <option value="INR" selected>INR (₹)</option>
+              </select>
+            </div>
+            <i class="fa-solid fa-arrow-right" style="margin-top: 22px; color: #94a3b8;"></i>
+            <div style="flex: 1;">
+              <label>To:</label>
+              <select id="convertTo">
+                <option value="USD" selected>USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="AED">AED (د.إ)</option>
+                <option value="INR">INR (₹)</option>
+              </select>
+            </div>
+          </div>
+          <button id="currencyConvertBtn" class="btn btn-primary btn-block">Convert Values</button>
+          <div id="convertResult"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. COMPOUND INVESTMENT GROWTH CALCULATOR -->
+  <section class="section container" style="padding-top: 0;">
+    <div class="calculator-box">
+      <div class="section-title" style="text-align: left; margin-bottom: 25px;">
+        <span class="badge">Wealth Compounding</span>
+        <h2>📈 Systematic Investment Plan (SIP) Compounding Calculator</h2>
+        <p>Simulate monthly equity SIP returns in INR (₹) over 1 to 30 years.</p>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <div class="form-group">
+            <label for="calc-monthly">Monthly Investment (₹):</label>
+            <input type="number" id="calc-monthly" value="10000" min="500" step="500">
+          </div>
+          <div class="form-group">
+            <label for="calc-rate">Expected Annual Return Rate (%):</label>
+            <input type="number" id="calc-rate" value="13" min="1" max="100" step="0.5">
+          </div>
+          <div class="form-group">
+            <label for="calc-years">Time Period (Years):</label>
+            <input type="number" id="calc-years" value="12" min="1" max="50">
+          </div>
+          <button class="btn btn-primary btn-block" onclick="calculateGrowth()">
+            <i class="fa-solid fa-chart-line"></i> Calculate Compounded Wealth
+          </button>
+        </div>
+
+        <div class="calc-results">
+          <div class="res-item">
+            <span>Total Capital Invested:</span>
+            <strong id="res-invested">₹14,40,000</strong>
+          </div>
+          <div class="res-item">
+            <span>Estimated Wealth Gain:</span>
+            <strong id="res-gain" style="color: #10b981;">₹22,96,873</strong>
+          </div>
+          <div class="res-item total">
+            <span>Future Maturity Portfolio Value:</span>
+            <strong id="res-total">₹37,36,873</strong>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Floating Action Logger Pill -->
+  <div id="openLogDrawerBtn" class="floating-log-pill" title="Click to inspect real-time backend audit logs">
+    <i class="fa-solid fa-database" style="color: #10b981;"></i>
+    <span>Backend Actions</span>
+    <span id="logCountBadge" class="log-count-badge">0</span>
+  </div>
+
+  <!-- Slide-in Action Logger Drawer -->
+  <div id="actionLogDrawer" class="action-log-drawer">
+    <div class="drawer-header">
+      <h3><i class="fa-solid fa-receipt"></i> Real-Time Audit Log</h3>
+      <button id="closeLogDrawerBtn" class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-meta-bar">
+      <span>Auto-syncing every action to Google Apps Script</span>
+      <button id="clearLogsBtn" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.72rem;">Clear Local</button>
+    </div>
+    <div id="actionLogDrawerList" class="drawer-list">
+      <!-- Injected by script.js -->
+    </div>
+  </div>
+
   <footer>
     <div class="container footer-content">
-      <p>© 2026 SmartTrack - Personal Expense & Investment Portal. All Rights Reserved.</p>
+      <p>© 2026 SmartTrack - Personal Expense & Investment Portal (Rupees ₹ Edition). All Rights Reserved.</p>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-github"></i></a>
         <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
       </div>
     </div>
   </footer>

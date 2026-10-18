@@ -3,23 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartTrack | Expense & Investment Tracker</title>
+  <title>SmartTrack | Personal Expense & Investment Tracker (₹)</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+  <!-- Top Live Currency Ticker -->
+  <div class="top-currency-bar">
+    <div class="top-bar-inner">
+      <div>
+        <span class="live-dot"></span>
+        <span>Live Forex Index (Base INR ₹):</span>
+        <span class="ticker-item">1 USD = ₹86.50</span>
+        <span class="ticker-item">1 EUR = ₹92.30</span>
+        <span class="ticker-item">1 GBP = ₹110.60</span>
+        <span class="ticker-item">1 AED = ₹23.55</span>
+      </div>
+      <div>
+        <a href="services.html#currency-engine" style="color: #93c5fd; text-decoration: none; font-size: 0.78rem;">
+          <i class="fa-solid fa-sliders"></i> Adjust Custom Rates
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- Navigation Bar -->
   <header class="navbar">
-    <div class="logo">
+    <a href="index.html" class="logo">
       <i class="fa-solid fa-wallet"></i>
-      <span>Smart<strong>Track</strong></span>
-    </div>
+      <span>Smart<strong>Track</strong> <small style="font-size: 0.75rem; color: var(--primary);">₹ INR</small></span>
+    </a>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="services.html">Services & Calculators</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html" class="btn-nav">Contact & Log</a></li>
       </ul>
@@ -29,28 +48,28 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <span class="badge">🚀 Take Control of Your Financial Future</span>
+      <span class="badge">🚀 Take Control of Your Financial Future in Indian Rupees</span>
       <h1>Master Your Expenses & Grow Your Wealth</h1>
-      <p>Track your daily spending, manage investment portfolios, and visualize your financial freedom in one unified, real-time dashboard.</p>
+      <p>Track your daily spending, calculate loan EMIs, manage debt, and simulate long-term SIP wealth in Indian Rupees (₹) with real-time Google Sheets backend synchronization.</p>
       <div class="hero-buttons">
-        <a href="contact.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Log Transaction</a>
-        <a href="services.html" class="btn btn-secondary"><i class="fa-solid fa-chart-pie"></i> Explore Tools</a>
+        <a href="contact.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Log Transaction (₹)</a>
+        <a href="services.html" class="btn btn-secondary"><i class="fa-solid fa-calculator"></i> EMI & Spending Tools</a>
       </div>
     </div>
     <div class="hero-card">
       <div class="stat-card balance-card">
-        <p>Total Net Worth</p>
-        <h2>$48,750.00</h2>
-        <span class="trend positive"><i class="fa-solid fa-arrow-trend-up"></i> +12.4% this month</span>
+        <p>Total Estimated Net Worth</p>
+        <h2>₹48,75,000</h2>
+        <span class="trend positive"><i class="fa-solid fa-arrow-trend-up"></i> +12.4% portfolio growth this financial year</span>
       </div>
       <div class="quick-stats-grid">
         <div class="stat-card">
           <p><i class="fa-solid fa-arrow-down" style="color: #ef4444;"></i> Monthly Expenses</p>
-          <h3>$2,340.00</h3>
+          <h3>₹45,000</h3>
         </div>
         <div class="stat-card">
-          <p><i class="fa-solid fa-arrow-up" style="color: #10b981;"></i> Total Investments</p>
-          <h3>$32,450.00</h3>
+          <p><i class="fa-solid fa-arrow-up" style="color: #10b981;"></i> Total Mutual Fund / SIPs</p>
+          <h3>₹32,50,000</h3>
         </div>
       </div>
     </div>
@@ -59,32 +78,67 @@
   <!-- Feature Highlights -->
   <section class="section container">
     <div class="section-title">
-      <h2>Why Choose SmartTrack?</h2>
-      <p>Built for students, professionals, and smart investors.</p>
+      <h2>Why SmartTrack with INR (₹) Engine?</h2>
+      <p>Engineered for Indian professionals, students, families, and high-net-worth investors.</p>
     </div>
     <div class="features-grid">
       <div class="feature-box">
-        <i class="fa-solid fa-receipt feature-icon"></i>
-        <h3>Automated Expense Logging</h3>
-        <p>Categorize everyday spending across food, utilities, rent, and entertainment effortlessly.</p>
+        <i class="fa-solid fa-calculator feature-icon"></i>
+        <h3>Custom EMI & Prepayment Tool</h3>
+        <p>Calculate home, car, and education loan EMIs with smart amortization and interest-saving prepayment tips.</p>
       </div>
       <div class="feature-box">
-        <i class="fa-solid fa-chart-line feature-icon"></i>
-        <h3>Portfolio Tracking</h3>
-        <p>Monitor stocks, mutual funds, crypto, and fixed deposits with real-time growth indicators.</p>
+        <i class="fa-solid fa-scale-balanced feature-icon"></i>
+        <h3>50/30/20 Spending Advisor</h3>
+        <p>Monitor needs, wants, and debt-to-income (DTI) with custom suggestions on trimming unnecessary expenses.</p>
+      </div>
+      <div class="feature-box">
+        <i class="fa-solid fa-money-bill-transfer feature-icon"></i>
+        <h3>Live Currency Value Engine</h3>
+        <p>Real-time exchange conversion between INR (₹), USD, EUR, and AED with fully customizable rates as per need.</p>
+      </div>
+      <div class="feature-box">
+        <i class="fa-solid fa-user-tie feature-icon"></i>
+        <h3>Client Persona Suggestions</h3>
+        <p>Actionable financial planning blueprints for students, salaried professionals, home loan holders, and HNIs.</p>
       </div>
       <div class="feature-box">
         <i class="fa-solid fa-database feature-icon"></i>
-        <h3>Cloud Google Sheets Sync</h3>
-        <p>All your records are automatically backed up directly into your personal Google Sheet database.</p>
+        <h3>Action Audit & Cloud Backend</h3>
+        <p>Every single user action and transaction is logged in real-time to Google Apps Script and Google Sheets.</p>
+      </div>
+      <div class="feature-box">
+        <i class="fa-solid fa-shield-halved feature-icon"></i>
+        <h3>100% Privacy & Zero Lock-in</h3>
+        <p>Your numbers remain in your personal Google Drive spreadsheet with zero third-party vendor tracking.</p>
       </div>
     </div>
   </section>
 
+  <!-- Floating Action Logger Pill -->
+  <div id="openLogDrawerBtn" class="floating-log-pill" title="Click to inspect real-time backend audit logs">
+    <i class="fa-solid fa-database" style="color: #10b981;"></i>
+    <span>Backend Actions</span>
+    <span id="logCountBadge" class="log-count-badge">0</span>
+  </div>
+
+  <!-- Slide-in Action Logger Drawer -->
+  <div id="actionLogDrawer" class="action-log-drawer">
+    <div class="drawer-header">
+      <h3><i class="fa-solid fa-receipt"></i> Real-Time Audit Log</h3>
+      <button id="closeLogDrawerBtn" class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-meta-bar">
+      <span>Auto-syncing every action to Google Apps Script</span>
+      <button id="clearLogsBtn" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.72rem;">Clear Local</button>
+    </div>
+    <div id="actionLogDrawerList" class="drawer-list"></div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="container footer-content">
-      <p>© 2026 SmartTrack - Personal Expense & Investment Portal. All Rights Reserved.</p>
+      <p>© 2026 SmartTrack - Personal Expense & Investment Portal (Rupees ₹ Edition). All Rights Reserved.</p>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-github"></i></a>
         <a href="#"><i class="fa-brands fa-linkedin"></i></a>
