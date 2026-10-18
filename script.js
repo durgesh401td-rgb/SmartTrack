@@ -813,21 +813,9 @@ document.addEventListener("DOMContentLoaded", () => {
     screen: `${window.innerWidth}x${window.innerHeight}`
   });
 
-  // 6. Drawer Toggle Logic (Restricted to Admin)
-  const toggleBtn = document.getElementById("openLogDrawerBtn");
+  // 6. Drawer Close Logic
   const closeBtn = document.getElementById("closeLogDrawerBtn");
-  const drawer = document.getElementById("actionLogDrawer");
-
-  if (toggleBtn && drawer) {
-    toggleBtn.addEventListener("click", () => {
-      if (AdminAuth.isAuthenticated()) {
-        AdminAuth.openDrawer();
-      } else {
-        AdminAuth.openModal();
-      }
-    });
-  }
-  if (closeBtn && drawer) {
+  if (closeBtn) {
     closeBtn.addEventListener("click", () => {
       AdminAuth.closeDrawer();
     });
